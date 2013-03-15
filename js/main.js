@@ -1,6 +1,6 @@
 // Kevin O'Toole
 // VFW 1303
-// Project 2
+// Project 3
 
 // Wait until the DOM is ready.
 window.addEventListener("DOMContentLoaded", function(){
@@ -38,16 +38,19 @@ window.addEventListener("DOMContentLoaded", function(){
 	}
 	
 	//Get checkbox values.
-	/*var checkboxes = document.getElementById("addRecipe").when;
-	var checkboxValue = function(){
-		for(i=0, c=checkboxes.length; i<c; i++){
+	function getCheckboxValues(){
+		whenCookedValue = [];
+		var checkboxes = document.forms[0].when;
+		for(var i=0; i < checkboxes.length; i++){
 			if(checkboxes[i].checked){
-				whenCookedValue = checkboxes[i].value;
+				whenCookedValue.push(checkboxes[i].value);
 			}
 		}
-	}*/ //Play around with this some more when i have time to see if i can get it to work.
-	
-	function getCheckboxValues(){
+	}
+
+
+	// Old get check boxes function, got shorter for loop function to work 	
+	/*function getCheckboxValues(){
 		whenCookedValue = [];
 		if($("valentines").checked){
 			var valentine = $("valentines").value;
@@ -77,7 +80,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			var oth = $("other").value + ": " + $("specify").value ;
 			whenCookedValue.push(oth);
 		}
-	}
+	}*/
 	
 	function toggleControls(n){
 		switch(n){
@@ -115,6 +118,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			item.group 			= ["Group", $("types").value];
 			item.range 			= ["Difficulty:", $("range").value];
 /*chk box*/	item.whenCooked		= ["When You Cook This:", whenCookedValue];
+			//item.specify		= ["Other Time:", $("specify").value];
 			item.time 			= ["Cooking Time:", $("time").value];
 			item.temperature 	= ["Cooking Temperature:", $("temperature").value];
 			item.directions 	= ["Cooking Directions:", $("directions").value];
@@ -141,6 +145,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		$("items").style.display = "block";							// Safety just to be sure that the items display
 		for(var i=0, len=localStorage.length; i<len; i++){ 			// Creates loop of local storage
 			var makeNewli = document.createElement("li"); 			// Create a new li
+			var dataLinksLi = document.createElement("li");			// Creates a link for the display data
 			makeNewList.appendChild(makeNewli);  					// Appends the new li to the ul tag
 			var key = localStorage.key(i); 							// Sets the key value from local storage
 			var value = localStorage.getItem(key); 					// Sets the value from the key from the local storage
@@ -152,8 +157,87 @@ window.addEventListener("DOMContentLoaded", function(){
 				makeNewSubList.appendChild(makeNewSubli); 			// Appends the new li to the new ul tag
 				var optNewSubText = newObj[n][0] + " " + newObj[n][1]; // 
 				makeNewSubli.innerHTML = optNewSubText;
+				makeNewSubList.appendChild(dataLinksLi);
+			}
+			makeDisplayItemLinks(localStorage.key(i), dataLinksLi); // create our edit and delete buttons/link for local storage.
+		}
+	}
+	
+	// Make Item Links Function. Creating the edit and delete links for each stored item when displayed.
+	function makeDisplayItemLinks(key, dataLinksLi){
+		// add edit single item link
+		var editDataLink = document.createElement("a");
+		editDataLink.href = "#";
+		editDataLink.key = key;
+		var editDataLinkText = "Edit Recipe Information";
+		editDataLink.addEventListener("click", editRecipe);
+		editDataLink.innerHTML = editDataLinkText;
+		dataLinksLi.appendChild(editDataLink);
+		
+		// add line break
+		var lineBreakTag = document.createElement("br");
+		dataLinksLi.appendChild(lineBreakTag);
+	
+		// add delete single item link
+		var deleteDataLink = document.createElement("a");
+		deleteDataLink.href = "#";
+		deleteDataLink.key = key;
+		var deleteDataLinkText = "Delete Recipe";
+		//deleteDataLink.addEventListener("click", deleteRecipe);
+		deleteDataLink.innerHTML = deleteDataLinkText;
+		dataLinksLi.appendChild(deleteDataLink);
+	}
+	
+	function editRecipe(){
+		//Grab the data from our item from local storage.
+		var getRecipeValue = localStorage.getItem(this.key);
+		var item = JSON.parse(getRecipeValue);
+		
+		// Shows the form again
+		toggleControls("off");
+		
+		// populates the form fields with current local storage values.
+		$("fname").value = item.fname[1];
+		$("lname").value = item.lname[1];
+		$("todaysDate").value = item.todaysDate[1];
+		var relatedRadios = document.forms[0].relative;
+		for(var i=0; i<relatedRadios.length; i++){
+			if(relatedRadios[i].value == "Yes" && item.family[1] == "Yes"){
+				relatedRadios[i].setAttribute("checked", "checked");
+			}else if(relatedRadios[i].value == "No" && item.family[1] == "No"){
+				relatedRadios[i].setAttribute("checked", "checked");
 			}
 		}
+		$("email").value = item.email[1];
+		$("types").value = item.group[1];
+		$("range").value = item.range[1];
+		/*var cooked = document.forms[0].when;
+		for(var i=0; i<cooked.lenght; i++){		
+			if(item.whenCooked[i] == "Valentines"){
+				$("valentines").setAttribute("checked", "checked");
+			}	
+			if(item.whenCooked[i] == "Easter"){
+				$("easter").setAttribute("checked", "checked");
+			}
+		}	
+		f(item.whenCooked[1] == "Halloween"){
+			$("halloween").setAttribute("checked", "checked");
+		}
+		if(item.whenCooked[1] == "Thanksgiving"){
+			$("thanksgiving").setAttribute("checked", "checked");
+		}
+		if(item.whenCooked[1] == "Christmas"){
+			$("christmas").setAttribute("checked", "checked");
+		}
+		if(item.whenCooked[1] == "Birthdays"){
+			$("birthdays").setAttribute("checked", "checked");
+		}
+		if(item.whenCooked[1] == "other"){
+			$("other").setAttribute("checked", "checked");
+		}*/
+		$("time").value = item.time[1];
+		$("temperature").value = item.temperature[1];
+		$("directions").value = item.directions[1];
 	}
 	
 	function deleteLocalRecipes(){
