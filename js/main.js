@@ -49,38 +49,40 @@ window.addEventListener("DOMContentLoaded", function(){
 	}
 
 
-	// Old get check boxes function, got shorter for loop function to work 	
-	/*function getCheckboxValues(){
-		whenCookedValue = [];
-		if($("valentines").checked){
-			var valentine = $("valentines").value;
-			whenCookedValue.push(valentine);
-		}
-		if($("easter").checked){
-			var east = $("easter").value;
-			whenCookedValue.push(east);
-		}
-		if($("halloween").checked){
-			var hall= $("halloween").value;
-			whenCookedValue.push(hall);
-		}
-		if($("thanksgiving").checked){
-			var thanks = $("thanksgiving").value;
-			whenCookedValue.push(thanks);
-		}
-		if($("christmas").checked){
-			var christ = $("christmas").value;
-			whenCookedValue.push(christ);
-		}
-		if($("birthdays").checked){
-			var birth = $("birthdays").value;
-			whenCookedValue.push(birth);
-		}
-		if($("other").checked){
-			var oth = $("other").value + ": " + $("specify").value ;
-			whenCookedValue.push(oth);
-		}
-	}*/
+	// Old get check boxes function, got shorter for loop function to work 
+	// using this function though to get check boxes to re-populate	
+		/*function getCheckboxValues(){
+			whenCookedValue = [];
+			if($("valentines").checked){
+				var valentine = $("valentines").value;
+				whenCookedValue.push(valentine);
+			}
+			if($("easter").checked){
+				var east = $("easter").value;
+				whenCookedValue.push(east);
+			}
+			if($("halloween").checked){
+				var hall= $("halloween").value;
+				whenCookedValue.push(hall);
+			}
+			if($("thanksgiving").checked){
+				var thanks = $("thanksgiving").value;
+				whenCookedValue.push(thanks);
+			}
+			if($("christmas").checked){
+				var christ = $("christmas").value;
+				whenCookedValue.push(christ);
+			}
+			if($("birthdays").checked){
+				var birth = $("birthdays").value;
+				whenCookedValue.push(birth);
+			}
+			if($("other").checked){
+				var oth = $("other").value; // + ": " + $("specify").value ;
+				whenCookedValue.push(oth);
+			}
+			return whenCookedValue
+		}*/
 	
 	function toggleControls(n){
 		switch(n){
@@ -118,7 +120,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			item.group 			= ["Group", $("types").value];
 			item.range 			= ["Difficulty:", $("range").value];
 /*chk box*/	item.whenCooked		= ["When You Cook This:", whenCookedValue];
-			//item.specify		= ["Other Time:", $("specify").value];
+			item.specify		= ["Other Time:", $("specify").value];
 			item.time 			= ["Cooking Time:", $("time").value];
 			item.temperature 	= ["Cooking Temperature:", $("temperature").value];
 			item.directions 	= ["Cooking Directions:", $("directions").value];
@@ -211,35 +213,37 @@ window.addEventListener("DOMContentLoaded", function(){
 		$("email").value = item.email[1];
 		$("types").value = item.group[1];
 		$("range").value = item.range[1];
-		/*var cooked = document.forms[0].when;
-		for(var i=0; i<cooked.lenght; i++){		
-			if(item.whenCooked[i] == "Valentines"){
-				$("valentines").setAttribute("checked", "checked");
-			}	
-			if(item.whenCooked[i] == "Easter"){
-				$("easter").setAttribute("checked", "checked");
+		/*var whenCookedValue = item.whenCookedValue;
+		var cooked = whenCookedValue[1];
+		for(var i=0; i<cooked.length; i++){
+			if(cooked[i] == "Valentines"){
+				$("valentines").setAttribute("checked", "checked")
 			}
-		}	
-		f(item.whenCooked[1] == "Halloween"){
-			$("halloween").setAttribute("checked", "checked");
-		}
-		if(item.whenCooked[1] == "Thanksgiving"){
-			$("thanksgiving").setAttribute("checked", "checked");
-		}
-		if(item.whenCooked[1] == "Christmas"){
-			$("christmas").setAttribute("checked", "checked");
-		}
-		if(item.whenCooked[1] == "Birthdays"){
-			$("birthdays").setAttribute("checked", "checked");
-		}
-		if(item.whenCooked[1] == "other"){
-			$("other").setAttribute("checked", "checked");
+			if(cooked[i] == "Easter"){
+				$("easter").setAttribute("checked", "checked")
+			}
+			if(cooked[i] == "Halloween"){
+				$("halloween").setAttribute("checked", "checked")
+			}
+			if(cooked[i] == "Thanksgiving"){
+				$("thanksgiving").setAttribute("checked", "checked")
+			}
+			if(cooked[i] == "Christmas"){
+				$("christmas").setAttribute("checked", "checked")
+			}
+			if(cooked[i] == "Birthdays"){
+				$("birthdays").setAttribute("checked", "checked")
+			}
+			if(cooked[i] == "Other"){
+				$("other").setAttribute("checked", "checked")
+			}
 		}*/
+		$("specify").value = item.specify[1];
 		$("time").value = item.time[1];
 		$("temperature").value = item.temperature[1];
 		$("directions").value = item.directions[1];
 	}
-	
+		
 	function deleteLocalRecipes(){
 		if(localStorage.length === 0){
 			alert("There are no recipes in your local storage.")
