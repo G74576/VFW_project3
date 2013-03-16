@@ -105,8 +105,16 @@ window.addEventListener("DOMContentLoaded", function(){
 	}
 	
 	// Store data to local storage with unique Id of random number
-	function storeNewRecipe(){
-		var uniqueId 			= Math.floor(Math.random()*1000001);
+	function storeNewRecipe(key){
+		// If there is no key, this means this is a brand new item and we need a key
+		if(!key){
+			var uniqueId 			= Math.floor(Math.random()*1000001);
+		}else{
+		//Set the id to the existing key we are editing so that it will save over the data.
+		//The key is the same key that's been passed along from the edit submit event handler
+		//to the validate function, and then passed here into the store recipe function
+			uniqueID = key;
+		}
 		//Gather up all our form field values and store in an object.
 		//Object properties contain array with the form label and input values.
 		getSelectedRadio();
@@ -242,6 +250,16 @@ window.addEventListener("DOMContentLoaded", function(){
 		$("time").value = item.time[1];
 		$("temperature").value = item.temperature[1];
 		$("directions").value = item.directions[1];
+		
+		// Remove the initial listener from the input 'save contact' button.
+		saveNewRecipe.removeEventListener("click", storeNewRecipe);
+		// Change submit button value to say edit recipe
+		$("saveRecipe").value = "Edit Recipe Information";
+		var editRecipeInfo = $("saveRecipe");
+		//Save the key value established in this function as a property of the editRecipe event
+		//so we can use that value when we save the data we edited.
+		editRecipeInfo.addEventListener("click", validate);
+		editRecipeInfo.key = this.key;
 	}
 		
 	function deleteLocalRecipes(){
@@ -255,11 +273,72 @@ window.addEventListener("DOMContentLoaded", function(){
 		}
 	}
 	
+	function validate(e){
+		//Define the elements we want to check
+		var getFname = $("fname");
+		var getLname = $("lname");
+		var getEmail = $("email");
+		var getGroup = $("types");
+		
+		// Reset Error Messages
+		errMsg.innerHTML = "";
+		//	getFname.style.border = ;
+		//	getLname.style.border = ;
+		//	getEmail.style.border = ;
+		//	getGroup.style.border = ;
+
+		// Get error messages
+		var errorMessages = [];
+		//First Name validation
+		if(getFname.value === ""){
+			var fNameError = "Please enter a first name.";
+			getFname.style.border = "1px solid red";
+			errorMessages.push(fNameError);
+		}
+		
+		//Last Name Validation
+		if(getLname.value === ""){
+			var lNameError = "Please enter a last name.";
+			getLname.style.border = "1px solid red";
+			errorMessages.push(lNameError);
+		}
+		
+		//Email Validation
+		var emailRe = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		if(!(emailRe.exec(getEmail.value))){
+			var eMailError = "Please enter your Email."
+			getEmail.style.border = "1px solid red";
+			errorMessages.push(eMailError);
+		}
+		
+		//group validation
+		if(getGroup.value === " --Choose A Type Of Recipe-- "){
+			var groupError = "Please select a type of recipe.";
+			getGroup.style.border = "1px solid red";
+			errorMessages.push(groupError);
+		}
+		
+		//If there were errors, display them on the screen.
+		if(errorMessages.length >= 1){
+			for(var i=0, j=errorMessages.length; i < j; i++){
+				var errorText = document.createElement("li");
+				errorText.innerHTML = errorMessages[i];
+				errMsg.appendChild(errorText);
+			}
+			e.preventDefault();
+			return false;
+		}else{
+			//If all is ok. save our data. Send the key value which came from the edit data function.
+			//Remember this key value was passed through the edit submit eventListener as a property.
+			storeNewRecipe(this.key);
+		}
+	}
+	
 	// Variable defaults
 	var recipeType = [" --Choose A Type Of Recipe-- ", "Breakfast", "Lunch", "Dinner", "Appetizer", "Dessert", "Drink"];
 	var	relatedValue;
 	var	whenCookedValue = "No specific time when you would cook this.";
-	
+	var errMsg = $("errors");
 	recipeCategory();
 
 	//Set Link & Submit Click Events
@@ -268,6 +347,6 @@ window.addEventListener("DOMContentLoaded", function(){
 	var clearRecipes =$("clear");
 	clearRecipes.addEventListener("click", deleteLocalRecipes);
 	var saveNewRecipe = $("saveRecipe");
-	saveNewRecipe.addEventListener("click", storeNewRecipe);
-	saveNewRecipe.addEventListener("click", refreshWindow);
+	saveNewRecipe.addEventListener("click", validate);
+	//saveNewRecipe.addEventListener("click", refreshWindow);
 });

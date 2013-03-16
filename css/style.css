@@ -75,6 +75,17 @@ legend{
 	font-family: "Times New Roman", Times, Arial;
 }
 
+span#required{
+	font-family: "Times New Roman", Times, Arial;
+	font-size: 12px;
+}
+
+ul#errors{
+	font-family: "Times New Roman", Times, Arial;
+	color: red;
+	font-size: 14px;
+}
+
 li{
 	text-align: left;
 	margin-left: auto;

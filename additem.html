@@ -30,9 +30,11 @@
 		<form id="addRecipe" action="#" method="post"> 
 			<fieldset id="contactFieldset">
 				<legend>Your Information</legend>
+					<span id="required">* fields are required.</span>
+					<ul id="errors"></ul>
 					<ul id="contactInfo">
-						<li><label for="fname">First Name&#58;</label><input type="text" id="fname" /></li>
-						<li><label for="lname">Last Name&#58;</label><input type="text" id="lname" /></li>
+						<li><label for="fname">*First Name&#58;</label><input type="text" id="fname" /></li>
+						<li><label for="lname">*Last Name&#58;</label><input type="text" id="lname" /></li>
 						<li><label for="todaysDate">Todays Date&#58;</label><input type="date" id="todaysDate" /></li>
 						<li>Are you part of the family&#63;
 							<ul class="family">
@@ -40,13 +42,13 @@
 								<input type="radio" value="No" id="no" name="relative" /><label for="no">No</label>
 							</ul>
 						</li>
-						<li><label for="emai">Email&#58;</label><input typye="email" id="email" placeholder="example@email.com" /></li>
+						<li><label for="emai">*Email&#58;</label><input typye="email" id="email" placeholder="example@email.com" /></li>
 					</ul>
 			</fieldset>
 			<fieldset id="redipeFieldset">
 				<legend>Your Recipe</legend>
 					<ul id="recipeInfo">
-						<li id="selectType"><label for="type">What type of recipe will this be&#63;</label><br /></li>
+						<li id="selectType"><label for="type">*What type of recipe will this be&#63;</label><br /></li>
 						<li><label for="range">Select the level of difficulty&#58;</label><br />
 							<small>&#40;Easy&#41;</small><input type="range" min="1" max="10" name="range" id="range" /><small>&#40;Difficult&#41;</small>
 						</li>
@@ -71,7 +73,7 @@
 						<input type="hidden" value="true" />
 					</ul>
 			</fieldset>
-				<div><input type="button" value="Submit Your Recipe!" id ="saveRecipe"/></div>
+				<div><input type="submit" value="Submit Your Recipe!" id ="saveRecipe"/></div>
 		</form>
 		<footer>	
 			<nav>
