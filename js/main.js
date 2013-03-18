@@ -193,7 +193,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		deleteDataLink.href = "#";
 		deleteDataLink.key = key;
 		var deleteDataLinkText = "Delete Recipe";
-		//deleteDataLink.addEventListener("click", deleteRecipe);
+		deleteDataLink.addEventListener("click", deleteRecipe);
 		deleteDataLink.innerHTML = deleteDataLinkText;
 		dataLinksLi.appendChild(deleteDataLink);
 	}
@@ -262,6 +262,17 @@ window.addEventListener("DOMContentLoaded", function(){
 		editRecipeInfo.key = this.key;
 	}
 		
+	function deleteRecipe(){
+		var ask = confirm("Are you sure you want to delete this recipe?");
+		if(ask){
+			localStorage.removeItem(this.key);
+			alert("The recipe was deleted!");
+			window.location.reload();
+		}else{
+			alert("The recipe was not deleted!");
+		}
+	}
+	
 	function deleteLocalRecipes(){
 		if(localStorage.length === 0){
 			alert("There are no recipes in your local storage.")
@@ -282,10 +293,10 @@ window.addEventListener("DOMContentLoaded", function(){
 		
 		// Reset Error Messages
 		errMsg.innerHTML = "";
-		//	getFname.style.border = ;
-		//	getLname.style.border = ;
-		//	getEmail.style.border = ;
-		//	getGroup.style.border = ;
+		//	getFname.style.border = "";
+		//	getLname.style.border = "";
+		//	getEmail.style.border = "";
+		//	getGroup.style.border = "";
 
 		// Get error messages
 		var errorMessages = [];
