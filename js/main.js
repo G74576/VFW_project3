@@ -113,7 +113,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		//Set the id to the existing key we are editing so that it will save over the data.
 		//The key is the same key that's been passed along from the edit submit event handler
 		//to the validate function, and then passed here into the store recipe function
-			uniqueID = key;
+			uniqueId = key;
 		}
 		//Gather up all our form field values and store in an object.
 		//Object properties contain array with the form label and input values.
@@ -221,28 +221,52 @@ window.addEventListener("DOMContentLoaded", function(){
 		$("email").value = item.email[1];
 		$("types").value = item.group[1];
 		$("range").value = item.range[1];
-		/*var whenCookedValue = item.whenCookedValue;
-		var cooked = whenCookedValue[1];
+		var cooked = document.forms[0].when;
 		for(var i=0; i<cooked.length; i++){
-			if(cooked[i] == "Valentines"){
+			if(cooked[i].value == "Valentines"){
+				cooked[i].setAttribute("checked", "checked")
+			}
+			if(cooked[i].value == "Easter"){
+				cooked[i].setAttribute("checked", "checked")
+			}
+			if(cooked[i].value == "Halloween"){
+				cooked[i].setAttribute("checked", "checked")
+			}
+			if(cooked[i].value == "Thanksgiving"){
+				cooked[i].setAttribute("checked", "checked")
+			}
+			if(cooked[i].value == "Christmas"){
+				cooked[i].setAttribute("checked", "checked")
+			}
+			if(cooked[i].value == "Birthdays"){
+				cooked[i].setAttribute("checked", "checked")
+			}
+			if(cooked[i].value == "Other"){
+				cooked[i].setAttribute("checked", "checked")
+			}
+		}
+		/*var whenCookedValue = item.whenCookedValue;
+		//var cooked = whenCookedValue[1];
+		for(var i=0; i<whenCookedValue.length; i++){
+			if(whenCookedValue[i] == "Valentines"){
 				$("valentines").setAttribute("checked", "checked")
 			}
-			if(cooked[i] == "Easter"){
+			if(whenCookedValue[i] == "Easter"){
 				$("easter").setAttribute("checked", "checked")
 			}
-			if(cooked[i] == "Halloween"){
+			if(whenCookedValue[i] == "Halloween"){
 				$("halloween").setAttribute("checked", "checked")
 			}
-			if(cooked[i] == "Thanksgiving"){
+			if(whenCookedValue[i] == "Thanksgiving"){
 				$("thanksgiving").setAttribute("checked", "checked")
 			}
-			if(cooked[i] == "Christmas"){
+			if(whenCookedValue[i] == "Christmas"){
 				$("christmas").setAttribute("checked", "checked")
 			}
-			if(cooked[i] == "Birthdays"){
+			if(whenCookedValue[i] == "Birthdays"){
 				$("birthdays").setAttribute("checked", "checked")
 			}
-			if(cooked[i] == "Other"){
+			if(whenCookedValue[i] == "Other"){
 				$("other").setAttribute("checked", "checked")
 			}
 		}*/
