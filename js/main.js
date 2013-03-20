@@ -221,55 +221,57 @@ window.addEventListener("DOMContentLoaded", function(){
 		$("email").value = item.email[1];
 		$("types").value = item.group[1];
 		$("range").value = item.range[1];
-		var cooked = document.forms[0].when;
+		/*var cooked = document.forms[0].when;
 		for(var i=0; i<cooked.length; i++){
-			if(cooked[i].value == "Valentines"){
+			if(cooked[i].checked == "valentines" && item.whenCooked[1] == "Valentines"){
 				cooked[i].setAttribute("checked", "checked")
 			}
-			if(cooked[i].value == "Easter"){
+			if(cooked[i].checked == "easter" && item.whenCooked[1] == "Easter"){
 				cooked[i].setAttribute("checked", "checked")
 			}
-			if(cooked[i].value == "Halloween"){
+			if(cooked[i].checked == "halloween" && item.whenCooked[1] == "Halloween"){
 				cooked[i].setAttribute("checked", "checked")
 			}
-			if(cooked[i].value == "Thanksgiving"){
+			if(cooked[i].checked == "thanksgiving" && item.whenCooked[1] == "Thanksgiving"){
 				cooked[i].setAttribute("checked", "checked")
 			}
-			if(cooked[i].value == "Christmas"){
+			if(cooked[i].checked == "christmas" && item.whenCooked[1] == "Christmas"){
 				cooked[i].setAttribute("checked", "checked")
 			}
-			if(cooked[i].value == "Birthdays"){
+			if(cooked[i].checked == "birthdays" && item.whenCooked[1] == "Birthdays"){
 				cooked[i].setAttribute("checked", "checked")
 			}
-			if(cooked[i].value == "Other"){
+			if(cooked[i].checked == "other" && item.whenCooked[1] == "Other"){
 				cooked[i].setAttribute("checked", "checked")
-			}
-		}
-		/*var whenCookedValue = item.whenCookedValue;
-		//var cooked = whenCookedValue[1];
-		for(var i=0; i<whenCookedValue.length; i++){
-			if(whenCookedValue[i] == "Valentines"){
-				$("valentines").setAttribute("checked", "checked")
-			}
-			if(whenCookedValue[i] == "Easter"){
-				$("easter").setAttribute("checked", "checked")
-			}
-			if(whenCookedValue[i] == "Halloween"){
-				$("halloween").setAttribute("checked", "checked")
-			}
-			if(whenCookedValue[i] == "Thanksgiving"){
-				$("thanksgiving").setAttribute("checked", "checked")
-			}
-			if(whenCookedValue[i] == "Christmas"){
-				$("christmas").setAttribute("checked", "checked")
-			}
-			if(whenCookedValue[i] == "Birthdays"){
-				$("birthdays").setAttribute("checked", "checked")
-			}
-			if(whenCookedValue[i] == "Other"){
-				$("other").setAttribute("checked", "checked")
 			}
 		}*/
+		
+		
+		
+		var cooked = item.whenCooked[1];
+		for(var i=0; i<cooked.length; i++){
+			if(cooked[i] == "Valentines"){
+				$("valentines").setAttribute("checked", "checked")
+			}
+			if(cooked[i] == "Easter"){
+				$("easter").setAttribute("checked", "checked")
+			}
+			if(cooked[i] == "Halloween"){
+				$("halloween").setAttribute("checked", "checked")
+			}
+			if(cooked[i] == "Thanksgiving"){
+				$("thanksgiving").setAttribute("checked", "checked")
+			}
+			if(cooked[i] == "Christmas"){
+				$("christmas").setAttribute("checked", "checked")
+			}
+			if(cooked[i] == "Birthdays"){
+				$("birthdays").setAttribute("checked", "checked")
+			}
+			if(cooked[i] == "Other"){
+				$("other").setAttribute("checked", "checked")
+			}
+		}
 		$("specify").value = item.specify[1];
 		$("time").value = item.time[1];
 		$("temperature").value = item.temperature[1];
