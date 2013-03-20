@@ -161,6 +161,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			var value = localStorage.getItem(key); 					// Sets the value from the key from the local storage
 			var newObj = JSON.parse(value); 						//Convert the string from local storage value back to an object by using JSON.parse
 			var makeNewSubList = document.createElement("ul"); 		// Creates a new sub list to display the objects of the list
+			makeNewSubList.setAttribute("id", "newSubList");
 			makeNewli.appendChild(makeNewSubList); 					// Appends the new ul to the li tag
 			for(var n in newObj){ 									// creates a for in loop of the object data
 				var makeNewSubli = document.createElement("li"); 	// Creates a new li item to display the objects in the group
@@ -177,6 +178,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	function makeDisplayItemLinks(key, dataLinksLi){
 		// add edit single item link
 		var editDataLink = document.createElement("a");
+		editDataLink.setAttribute("id", "editLink");
 		editDataLink.href = "#";
 		editDataLink.key = key;
 		var editDataLinkText = "Edit Recipe Information";
@@ -190,6 +192,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 		// add delete single item link
 		var deleteDataLink = document.createElement("a");
+		deleteDataLink.setAttribute("id", "deleteLink");
 		deleteDataLink.href = "#";
 		deleteDataLink.key = key;
 		var deleteDataLinkText = "Delete Recipe";
@@ -221,33 +224,6 @@ window.addEventListener("DOMContentLoaded", function(){
 		$("email").value = item.email[1];
 		$("types").value = item.group[1];
 		$("range").value = item.range[1];
-		/*var cooked = document.forms[0].when;
-		for(var i=0; i<cooked.length; i++){
-			if(cooked[i].checked == "valentines" && item.whenCooked[1] == "Valentines"){
-				cooked[i].setAttribute("checked", "checked")
-			}
-			if(cooked[i].checked == "easter" && item.whenCooked[1] == "Easter"){
-				cooked[i].setAttribute("checked", "checked")
-			}
-			if(cooked[i].checked == "halloween" && item.whenCooked[1] == "Halloween"){
-				cooked[i].setAttribute("checked", "checked")
-			}
-			if(cooked[i].checked == "thanksgiving" && item.whenCooked[1] == "Thanksgiving"){
-				cooked[i].setAttribute("checked", "checked")
-			}
-			if(cooked[i].checked == "christmas" && item.whenCooked[1] == "Christmas"){
-				cooked[i].setAttribute("checked", "checked")
-			}
-			if(cooked[i].checked == "birthdays" && item.whenCooked[1] == "Birthdays"){
-				cooked[i].setAttribute("checked", "checked")
-			}
-			if(cooked[i].checked == "other" && item.whenCooked[1] == "Other"){
-				cooked[i].setAttribute("checked", "checked")
-			}
-		}*/
-		
-		
-		
 		var cooked = item.whenCooked[1];
 		for(var i=0; i<cooked.length; i++){
 			if(cooked[i] == "Valentines"){
@@ -319,10 +295,10 @@ window.addEventListener("DOMContentLoaded", function(){
 		
 		// Reset Error Messages
 		errMsg.innerHTML = "";
-		//	getFname.style.border = "";
-		//	getLname.style.border = "";
-		//	getEmail.style.border = "";
-		//	getGroup.style.border = "";
+		getFname.removeAttribute("style", "border");
+		getLname.removeAttribute("style", "border");
+		getEmail.removeAttribute("style", "border");
+		getGroup.removeAttribute("style", "border");
 
 		// Get error messages
 		var errorMessages = [];

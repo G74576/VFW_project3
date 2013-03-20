@@ -20,7 +20,7 @@ html {
 */
 h1{
 	display: block;
-	padding: 10px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
 	margin: 10px 0px 0px 0px;
 	text-align: center;
 	/*font-family: Harrington, "Times New Roman", Arial;
@@ -32,6 +32,8 @@ h1{
 	index.html css
 */ 
 #compilation{
+	padding: 0px;
+	margin: 0px;
 	text-align: center;
 	font-family: "Times New Roman", Times, Arial;
 }
@@ -49,6 +51,8 @@ h1{
 	additem.html css
 */
 #subHead{
+	margin: 0px;
+	padding: 0px;
 	text-align: center;
 	font-weight: normal;
 	font-family: "Times New Roman", Times, Arial;
@@ -128,6 +132,13 @@ div{
 	margin: 5px;
 }
 
+/*
+	Display Recipes CSS
+*/
+#items ul#newSubList li{
+	list-style: none;
+}
+
 /* 
 	Footer css
 */
@@ -139,7 +150,7 @@ footer{
 /*
 	Navigation css
 */
-#clear, #display, #addNewRecipe{
+#clear, #display, #addNewRecipe, #editLink, #deleteLink{
 	color: #000;
 	font-family: "Times New Roman", Times, Arial;
 	font-size: 16px;
@@ -147,7 +158,7 @@ footer{
 	margin: 5px;
 }
 
-#clear:hover, #display:hover, #addNewRecipe:hover{
+#clear:hover, #display:hover, #addNewRecipe:hover, #editLink:hover, #deleteLink:hover{
 	color: #fff;
 	font-family: "Times New Roman", Times, Arial;
 	font-size: 16px;
