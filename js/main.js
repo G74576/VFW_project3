@@ -131,6 +131,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			item.specify		= ["Other Time:", $("specify").value];
 			item.time 			= ["Cooking Time:", $("time").value];
 			item.temperature 	= ["Cooking Temperature:", $("temperature").value];
+			item.ingredients	= ["Recipe Ingredients:", $("ingredients").value];
 			item.directions 	= ["Cooking Directions:", $("directions").value];
 		//Save data into local storage: Use Stringify to convert our object to a sting.
 		localStorage.setItem(uniqueId, JSON.stringify(item));
@@ -251,6 +252,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		$("specify").value = item.specify[1];
 		$("time").value = item.time[1];
 		$("temperature").value = item.temperature[1];
+		$("ingredients").value = item.ingredients[1];
 		$("directions").value = item.directions[1];
 		
 		// Remove the initial listener from the input 'save contact' button.

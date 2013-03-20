@@ -114,7 +114,7 @@ li{
 	width: 158px;
 }
 
-#time, #temperature, #directions{
+#time, #temperature, #ingredients, #directions{
 	display: block;
  	width: 200px;
 }
