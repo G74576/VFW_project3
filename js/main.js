@@ -294,6 +294,8 @@ window.addEventListener("DOMContentLoaded", function(){
 		var getLname = $("lname");
 		var getEmail = $("email");
 		var getGroup = $("types");
+		var getIng	 = $("ingredients");
+		var getDir	 = $("directions");
 		
 		// Reset Error Messages
 		errMsg.innerHTML = "";
@@ -331,6 +333,18 @@ window.addEventListener("DOMContentLoaded", function(){
 			var groupError = "Please select a type of recipe.";
 			getGroup.style.border = "1px solid red";
 			errorMessages.push(groupError);
+		}
+		
+		if(getIng.value === ""){
+			var ingredError = "Please enter your ingredients.";
+			getIng.style.border = "1px solid red";
+			errorMessages.push(ingredError);
+		}
+			
+		if(getDir.value === ""){
+			var dirError = "Please enter cooking directions.";
+			getDir.style.border = "1px solid red";
+			errorMessages.push(dirError);
 		}
 		
 		//If there were errors, display them on the screen.
